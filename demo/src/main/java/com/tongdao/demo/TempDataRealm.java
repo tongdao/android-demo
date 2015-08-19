@@ -4,16 +4,16 @@ import io.realm.RealmObject;
 import io.realm.annotations.RealmClass;
 
 @RealmClass
-public class TempDataRealm extends RealmObject{
-	
-	private String rewardJsonString;
-	
-	public String getRewardJsonString() {
-		return rewardJsonString;
-	}
+public class TempDataRealm extends RealmObject {
 
-	public void setRewardJsonString(String rewardJsonString) {
-		this.rewardJsonString = rewardJsonString;
-	}
+    private String rewardJsonString;
+
+    public String getRewardJsonString() {
+        return rewardJsonString;
+    }
+
+    public void setRewardJsonString(String rewardJsonString) {
+        this.rewardJsonString = rewardJsonString;
+    }
 
 }

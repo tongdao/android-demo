@@ -3,29 +3,27 @@
     android:id="@+id/data_scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true" >
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/btn_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="创建按钮" >
-        </TextView>
+            android:text="创建按钮"></TextView>
 
         <RadioGroup
             android:id="@+id/type_radio_gp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/event_radio"
@@ -48,16 +46,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="20dp" 
-            android:paddingBottom="20dp" >
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
 
             <EditText
                 android:id="@+id/btn_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:hint="请输入按钮名称" >
-            </EditText>
+                android:hint="请输入按钮名称"></EditText>
 
             <EditText
                 android:id="@+id/btn_event_name_et"
@@ -65,16 +62,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
-                android:hint="请输入事件名称" >
-            </EditText>
+                android:hint="请输入事件名称"></EditText>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/value_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/add_value_linear"
@@ -83,7 +78,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp" >
+            android:paddingTop="10dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -94,8 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="添加参数" >
-            </TextView>
+                android:text="添加参数"></TextView>
         </LinearLayout>
     </LinearLayout>
 

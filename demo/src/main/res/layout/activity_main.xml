@@ -1,20 +1,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/main_cn"
             android:layout_width="match_parent"
-            android:layout_height="250dp" 
+            android:layout_height="250dp"
             android:background="@drawable/two"
-            android:scaleType="fitXY"
-            />
+            android:scaleType="fitXY" />
 
         <TextView
             android:layout_width="match_parent"
@@ -22,8 +21,7 @@
             android:paddingLeft="22dp"
             android:paddingRight="20dp"
             android:paddingTop="10dp"
-            android:text="自定义事件或属性" >
-        </TextView>
+            android:text="自定义事件或属性"></TextView>
 
         <LinearLayout
             android:id="@+id/btn_container"
@@ -33,16 +31,14 @@
             android:paddingBottom="20dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:paddingTop="10dp" >
-        </LinearLayout>
+            android:paddingTop="10dp"></LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="20dp"
-            android:text="自定义奖品" >
-        </TextView>
+            android:text="自定义奖品"></TextView>
 
         <LinearLayout
             android:id="@+id/rewards_container"
@@ -51,16 +47,14 @@
             android:orientation="vertical"
             android:paddingBottom="20dp"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp" >
-        </LinearLayout>
+            android:paddingRight="20dp"></LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="20dp"
-            android:text="深度链接" >
-        </TextView>
+            android:text="深度链接"></TextView>
 
         <TextView
             android:id="@+id/page1_tv"
@@ -73,8 +67,7 @@
             android:layout_marginLeft="22dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:text="demo://page1" >
-        </TextView>
+            android:text="demo://page1"></TextView>
 
         <TextView
             android:id="@+id/page2_tv"
@@ -87,8 +80,7 @@
             android:layout_marginLeft="22dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
-            android:text="demo://page2" >
-        </TextView>
+            android:text="demo://page2"></TextView>
 
         <TextView
             android:id="@+id/page3_tv"
@@ -101,8 +93,7 @@
             android:layout_marginLeft="22dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
-            android:text="demo://page3" >
-        </TextView>
+            android:text="demo://page3"></TextView>
 
         <TextView
             android:id="@+id/page4_tv"
@@ -115,8 +106,7 @@
             android:layout_marginLeft="22dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
-            android:text="demo://page4" >
-        </TextView>
+            android:text="demo://page4"></TextView>
 
         <TextView
             android:id="@+id/page5_tv"
@@ -129,8 +119,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
             android:textColor="#FFFFFF"
-            android:text="demo://page5" >
-        </TextView>
+            android:text="demo://page5"></TextView>
     </LinearLayout>
 
 </ScrollView>

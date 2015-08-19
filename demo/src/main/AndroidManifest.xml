@@ -2,15 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tongdao.demo"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="21"/>
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
+
     <!-- Push service 运行需要的权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -28,20 +30,22 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="com.tongdao.demo.MainActivity"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="home"
                     android:scheme="demo_baidu" />
@@ -50,106 +54,110 @@
         <activity
             android:name="com.tongdao.demo.BtnDefineActivity"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.tongdao.demo.ChangeBkActivity"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.tongdao.demo.RewardDefineActivity"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait" >
-        </activity>
-        
+            android:screenOrientation="portrait"></activity>
+
         <activity
             android:name="com.tongdao.demo.DemoPage1"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="page1"
                     android:scheme="demo_baidu" />
             </intent-filter>
         </activity>
-        
+
         <activity
             android:name="com.tongdao.demo.DemoPage2"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="page2"
                     android:scheme="demo_baidu" />
             </intent-filter>
         </activity>
-        
+
         <activity
             android:name="com.tongdao.demo.DemoPage3"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="page3"
                     android:scheme="demo_baidu" />
             </intent-filter>
         </activity>
-        
+
         <activity
             android:name="com.tongdao.demo.DemoPage4"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="page4"
                     android:scheme="demo_baidu" />
             </intent-filter>
         </activity>
-        
+
         <activity
             android:name="com.tongdao.demo.DemoPage5"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="page5"
                     android:scheme="demo_baidu" />
             </intent-filter>
         </activity>
-        
+
         <activity
             android:name="com.tongdao.sdk.ui.TdDialogActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/td_transcutestyle" >
-        </activity>
-        
+            android:theme="@style/td_transcutestyle"></activity>
+
         <activity
             android:name="com.tongdao.sdk.ui.TdMessageDialogActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            >
-        </activity>
-        
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+
         <!-- push应用定义消息receiver声明 -->
-        <receiver android:name="com.tongdao.demo.MyPushMessageReceiver" >
+        <receiver android:name="com.tongdao.demo.MyPushMessageReceiver">
             <intent-filter>
 
                 <!-- 接收push消息 -->
@@ -163,7 +171,7 @@
         <!-- push必须的receviver和service声明 -->
         <receiver
             android:name="com.baidu.android.pushservice.PushServiceReceiver"
-            android:process=":bdservice_v1" >
+            android:process=":bdservice_v1">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -177,10 +185,10 @@
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
-        
+
         <receiver
             android:name="com.baidu.android.pushservice.RegistrationReceiver"
-            android:process=":bdservice_v1" >
+            android:process=":bdservice_v1">
             <intent-filter>
                 <action android:name="com.baidu.android.pushservice.action.adnotification.ADCLICK" />
                 <action android:name="com.baidu.android.pushservice.action.adnotification.ADDELETE" />
@@ -193,17 +201,18 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-        
+
         <service
             android:name="com.baidu.android.pushservice.PushService"
             android:exported="true"
-            android:process=":bdservice_v1"  >
+            android:process=":bdservice_v1">
             <intent-filter>
                 <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
             </intent-filter>
         </service>
-        
-        <service android:name="com.baidu.android.pushservice.CommandService"
+
+        <service
+            android:name="com.baidu.android.pushservice.CommandService"
             android:exported="true" />
         <!-- push结束 -->
     </application>

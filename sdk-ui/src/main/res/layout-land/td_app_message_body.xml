@@ -6,18 +6,16 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="12dp"
-    android:paddingRight="12dp"
-    >
-    
+    android:paddingRight="12dp">
+
     <ImageView
         android:id="@+id/td_message_iv"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:contentDescription="@string/lq_gb_icon"
         android:layout_marginRight="10dp"
-        android:background="@drawable/td_in_app_icon"
-        />
-    
+        android:background="@drawable/td_in_app_icon" />
+
 
     <TextView
         android:id="@+id/td_message_tv"
@@ -28,8 +26,7 @@
         android:gravity="center_vertical"
         android:maxLines="2"
         android:textColor="#ffffff"
-        android:textSize="14sp" >
-    </TextView>
+        android:textSize="14sp"></TextView>
 
     <ImageView
         android:id="@+id/td_message_arrow"
