@@ -48,7 +48,7 @@
 
                 <data
                     android:host="home"
-                    android:scheme="demo_baidu" />
+                    android:scheme="demo" />
             </intent-filter>
         </activity>
         <activity
@@ -76,7 +76,7 @@
 
                 <data
                     android:host="page1"
-                    android:scheme="demo_baidu" />
+                    android:scheme="demo" />
             </intent-filter>
         </activity>
 
@@ -92,7 +92,7 @@
 
                 <data
                     android:host="page2"
-                    android:scheme="demo_baidu" />
+                    android:scheme="demo" />
             </intent-filter>
         </activity>
 
@@ -108,7 +108,7 @@
 
                 <data
                     android:host="page3"
-                    android:scheme="demo_baidu" />
+                    android:scheme="demo" />
             </intent-filter>
         </activity>
 
@@ -124,7 +124,7 @@
 
                 <data
                     android:host="page4"
-                    android:scheme="demo_baidu" />
+                    android:scheme="demo" />
             </intent-filter>
         </activity>
 
@@ -140,7 +140,7 @@
 
                 <data
                     android:host="page5"
-                    android:scheme="demo_baidu" />
+                    android:scheme="demo" />
             </intent-filter>
         </activity>
 

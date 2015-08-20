@@ -19,7 +19,7 @@ import android.content.Context;
 import android.net.Uri;
 
 public class DataTool {
-    public static final String APP_KEY = "c9055f09038679277675eb7ddd49d6dd";
+    public static final String APP_KEY = "a49bcf321de24eadf94db4944cc766c6";
     public static final String BAIDU_API_KEY = "QGLHVuaavhBgygVCNVlDyRYB";
     private static ArrayList<TransferBean> transferBeanList;
     private static ArrayList<TransferRewardBean> transferRewardBeanList;

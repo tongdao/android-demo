@@ -157,8 +157,8 @@ public class TdMessageDialogActivity extends Activity {
         lq_btn_container.setLayoutParams(framePara);
         lq_btn_container.setPadding(datas[2] / 2, datas[2] / 2, datas[2] / 2, datas[2] / 2);
 
-        int realW = this.findViewById(R.id.lq_fake_view).getWidth();
-        int realH = this.findViewById(R.id.lq_fake_view).getHeight();
+        int realW = this.findViewById(R.id.lq_fake_view).getWidth() - 2 * cutDp - datas[2];
+        int realH = this.findViewById(R.id.lq_fake_view).getHeight() - 2 * cutDp - datas[2];
 
         //for buttons
         initButtons(tempTdMessageBean, realW, realH);
@@ -231,7 +231,7 @@ public class TdMessageDialogActivity extends Activity {
                 btnPara.height = (int) (rateH * realH);
                 btnPara.setMargins((int) (rateX * realW), (int) (rateY * realH), 0, 0);
                 btn.setLayoutParams(btnPara);
-                btn.setBackgroundColor(Color.GREEN);
+                btn.setBackgroundColor(Color.TRANSPARENT);
                 btn.setVisibility(View.VISIBLE);
 
                 btn.setOnClickListener(new OnClickListener() {
