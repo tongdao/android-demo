@@ -2,5 +2,12 @@
 <resources>
 
     <string name="app_name">TongRd Demo</string>
+    <string name="user1">USER1 LOGIN</string>
+    <string name="user2">USER2 LOGIN</string>
+    <string name="logout">LOGOUT</string>
+    <string name="title_activity_log_in">LogInActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

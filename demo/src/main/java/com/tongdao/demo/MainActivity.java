@@ -2,7 +2,7 @@ package com.tongdao.demo;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-
+import android.content.SharedPreferences;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -57,6 +57,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.getSupportActionBar().setTitle(" 同道演示");
         this.getSupportActionBar().setBackgroundDrawable(this.getResources().getDrawable(R.drawable.bar));
         setContentView(R.layout.activity_main);
+
+
         this.inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mainCn = (ImageView) this.findViewById(R.id.main_cn);
         this.btnContainer = (LinearLayout) this.findViewById(R.id.btn_container);
@@ -156,6 +158,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             startDefineReward();
         } else if (item.getItemId() == R.id.setting_add_item) {
             startDefineBtn();
+        } else if(item.getItemId() == R.id.test_userid_item){
+            Intent in = new Intent(this, LogInActivity.class);
+            this.startActivity(in);
+
         }
         return true;
     }

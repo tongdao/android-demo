@@ -40,6 +40,27 @@ public class TongDaoUiCore {
     }
 
     /**
+     * 初始化同道服务,请在onCreate方法中调用
+     *
+     * @param appContext 应用程序的上下文
+     * @param appKey     开发者从同道平台获得的AppKey
+     *
+     * @return boolean 同道服务的初始化结果
+     */
+    public static boolean init(Context appContext, String appKey, String userId) {
+        return TongDao.init(appContext, appKey, userId);
+    }
+
+    /**
+     *
+     *
+     */
+
+    public static void setUserId(Context appContext, String userId){
+        TongDao.setUserId(appContext, userId);
+    }
+
+    /**
      * 使用同道SDK生成userId
      *
      * @param appContext 应用程序的上下文

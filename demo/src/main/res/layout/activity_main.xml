@@ -121,5 +121,4 @@
             android:textColor="#FFFFFF"
             android:text="demo://page5"></TextView>
     </LinearLayout>
-
 </ScrollView>

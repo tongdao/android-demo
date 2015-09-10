@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tongdao.demo"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -26,18 +26,19 @@
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
     <application
-        android:name="com.tongdao.demo.TongDaoShowApplication"
+        android:name=".TongDaoShowApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
-            android:name="com.tongdao.demo.MainActivity"
+            android:name=".MainActivity"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
@@ -52,22 +53,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tongdao.demo.BtnDefineActivity"
+            android:name=".BtnDefineActivity"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.tongdao.demo.ChangeBkActivity"
+            android:name=".ChangeBkActivity"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.tongdao.demo.RewardDefineActivity"
+            android:name=".RewardDefineActivity"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait"></activity>
-
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.tongdao.demo.DemoPage1"
+            android:name=".DemoPage1"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -79,11 +79,10 @@
                     android:scheme="demo" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.tongdao.demo.DemoPage2"
+            android:name=".DemoPage2"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -95,11 +94,10 @@
                     android:scheme="demo" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.tongdao.demo.DemoPage3"
+            android:name=".DemoPage3"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -111,11 +109,10 @@
                     android:scheme="demo" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.tongdao.demo.DemoPage4"
+            android:name=".DemoPage4"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -127,11 +124,10 @@
                     android:scheme="demo" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.tongdao.demo.DemoPage5"
+            android:name=".DemoPage5"
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -143,21 +139,19 @@
                     android:scheme="demo" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.tongdao.sdk.ui.TdDialogActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/td_transcutestyle"></activity>
-
+            android:theme="@style/td_transcutestyle" />
         <activity
             android:name="com.tongdao.sdk.ui.TdMessageDialogActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- push应用定义消息receiver声明 -->
-        <receiver android:name="com.tongdao.demo.MyPushMessageReceiver">
+        <receiver android:name=".MyPushMessageReceiver" >
             <intent-filter>
 
                 <!-- 接收push消息 -->
@@ -171,7 +165,7 @@
         <!-- push必须的receviver和service声明 -->
         <receiver
             android:name="com.baidu.android.pushservice.PushServiceReceiver"
-            android:process=":bdservice_v1">
+            android:process=":bdservice_v1" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -185,10 +179,9 @@
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name="com.baidu.android.pushservice.RegistrationReceiver"
-            android:process=":bdservice_v1">
+            android:process=":bdservice_v1" >
             <intent-filter>
                 <action android:name="com.baidu.android.pushservice.action.adnotification.ADCLICK" />
                 <action android:name="com.baidu.android.pushservice.action.adnotification.ADDELETE" />
@@ -205,16 +198,21 @@
         <service
             android:name="com.baidu.android.pushservice.PushService"
             android:exported="true"
-            android:process=":bdservice_v1">
+            android:process=":bdservice_v1" >
             <intent-filter>
                 <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
             </intent-filter>
         </service>
-
         <service
             android:name="com.baidu.android.pushservice.CommandService"
             android:exported="true" />
         <!-- push结束 -->
+        <activity
+            android:name=".LogInActivity"
+            android:label="@string/title_activity_log_in"
+            android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
