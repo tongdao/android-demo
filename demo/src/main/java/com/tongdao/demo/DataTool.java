@@ -1,8 +1,5 @@
 package com.tongdao.demo;
 
-import io.realm.Realm;
-import io.realm.RealmResults;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -133,14 +130,9 @@ public class DataTool {
     }
 
     public static void saveTempRewards(Context context, ArrayList<TdRewardBean> rewards) throws JSONException {
-        Realm tempRealm = Realm.getInstance(context);
         ArrayList<TransferRewardBean> tempList = new ArrayList<TransferRewardBean>();
 
-        RealmResults<TempDataRealm> allTempDatas = tempRealm.allObjects(TempDataRealm.class);
-        if (allTempDatas.size() > 0) {
-            TempDataRealm tempOldJson = allTempDatas.first();
-            addTransferRewardBeans(tempList, tempOldJson.getRewardJsonString());
-        }
+        addTransferRewardBeans(tempList, TempDataPreference.getRewardJsonString(context));
 
         for (TdRewardBean eachRewardBean : rewards) {
             boolean isExist = false;
@@ -160,30 +152,12 @@ public class DataTool {
         }
 
         String tempJsonString = makeRewardsString(tempList);
-        tempRealm.beginTransaction();
-        tempRealm.clear(TempDataRealm.class);
-        if (tempJsonString != null) {
-            TempDataRealm tempObj = tempRealm.createObject(TempDataRealm.class);
-            tempObj.setRewardJsonString(tempJsonString);
-        }
-        tempRealm.commitTransaction();
-        tempRealm.close();
+        TempDataPreference.setRewardJsonString(context, tempJsonString);
     }
 
     public static ArrayList<TransferRewardBean> recoverTempRewards(Context context) throws JSONException {
-        Realm tempRealm = Realm.getInstance(context);
         ArrayList<TransferRewardBean> tempList = new ArrayList<TransferRewardBean>();
-
-        RealmResults<TempDataRealm> allTempDatas = tempRealm.allObjects(TempDataRealm.class);
-        if (allTempDatas.size() > 0) {
-            TempDataRealm tempOldJson = allTempDatas.first();
-            addTransferRewardBeans(tempList, tempOldJson.getRewardJsonString());
-        }
-
-        tempRealm.beginTransaction();
-        tempRealm.clear(TempDataRealm.class);
-        tempRealm.commitTransaction();
-        tempRealm.close();
+        addTransferRewardBeans(tempList, TempDataPreference.getRewardJsonString(context));
         return tempList;
     }
 

@@ -1,7 +1,5 @@
 package com.tongdao.demo;
 
-import io.realm.Realm;
-import io.realm.RealmResults;
 import android.content.SharedPreferences;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -45,7 +43,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private LayoutInflater inflater;
     private static final int SAMPLE_SIZE = 4;
     private ArrayList<Bitmap> rewardBitmaps = new ArrayList<Bitmap>();
-    private Realm realm;
     private Uri bkUri;
 
     @Override
@@ -69,7 +66,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.findViewById(R.id.page4_tv).setOnClickListener(this);
         this.findViewById(R.id.page5_tv).setOnClickListener(this);
 
-        this.realm = Realm.getInstance(this);
         this.loadBtns();
 
         this.registerListeners();
@@ -306,28 +302,22 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         try {
             String btns = DataTool.makeBtnsString();
             String rewards = DataTool.makeRewardsString(DataTool.getAllRewardBeans());
-            realm.beginTransaction();
-            realm.clear(DataRealm.class);
             if (btns != null || rewards != null || this.bkUri != null) {
-                DataRealm tempBtnsRealm = realm.createObject(DataRealm.class);
                 if (btns != null) {
-                    tempBtnsRealm.setBtnJsonString(btns);
+                    DataPreference.setBtnJsonString(MainActivity.this, btns);
                 }
 
                 if (rewards != null) {
-                    tempBtnsRealm.setRewardJsonString(rewards);
+                    DataPreference.setRewardJsonString(MainActivity.this, rewards);
                 }
 
                 if (this.bkUri != null) {
-                    tempBtnsRealm.setBkString(this.bkUri.toString());
+                    DataPreference.setBkString(MainActivity.this, this.bkUri.toString());
                 }
             }
-
-            realm.commitTransaction();
         } catch (JSONException e) {
             e.printStackTrace();
         } finally {
-            realm.close();
         }
     }
 
@@ -335,13 +325,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         String oldBtnJsonString = null;
         String oldRewardString = null;
         String bkUriString = null;
-        RealmResults<DataRealm> savedDatas = realm.allObjects(DataRealm.class);
-        if (savedDatas.size() > 0) {
-            DataRealm oldBtnsRealm = savedDatas.first();
-            oldBtnJsonString = oldBtnsRealm.getBtnJsonString();
-            oldRewardString = oldBtnsRealm.getRewardJsonString();
-            bkUriString = oldBtnsRealm.getBkString();
-        }
+
+        oldBtnJsonString = DataPreference.getBtnJsonString(MainActivity.this);
+        oldRewardString = DataPreference.getRewardJsonString(MainActivity.this);
+        bkUriString = DataPreference.getBkString(MainActivity.this);
 
         try {
             DataTool.initialBtnDatas(oldBtnJsonString);
