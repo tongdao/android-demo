@@ -8,8 +8,7 @@ public class TongDaoShowApplication extends FrontiaApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        //TongDaoUiCore.init(getApplicationContext(), DataTool.APP_KEY);
-        TongDaoUiCore.init(getApplicationContext(), DataTool.APP_KEY, "john");
+        TongDaoUiCore.init(getApplicationContext(), DataTool.APP_KEY);
     }
 
 }

@@ -67,7 +67,7 @@ public class TongDaoUiCore {
      * @return String 生成userId
      */
     public static String generateUserId(Context appContext) {
-        return TongDao.generateUserId(appContext);
+        return TongDao.generateDeviceId(appContext);
     }
 
     /**
