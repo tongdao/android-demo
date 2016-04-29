@@ -38,6 +38,8 @@ import android.util.Log;
 
 import com.tongdao.sdk.tools.TongDaoApiTool.TdSSLTrustManager;
 
+import javax.net.ssl.HttpsURLConnection;
+
 
 public class TdUtils {
 
@@ -54,12 +56,12 @@ public class TdUtils {
     public static boolean downloadUrlToStream(String urlString,
                                               OutputStream outputStream) {
         disableConnectionReuseIfNecessary();
-        HttpURLConnection urlConnection = null;
+        HttpsURLConnection urlConnection = null;
         BufferedOutputStream out = null;
         BufferedInputStream in = null;
         try {
             URL url = new URL(urlString);
-            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection = (HttpsURLConnection) url.openConnection();
             TdSSLTrustManager.addSSLManagerForConnection(urlConnection);
             in = new BufferedInputStream(urlConnection.getInputStream());
             out = new BufferedOutputStream(outputStream);
