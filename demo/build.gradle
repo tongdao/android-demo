@@ -31,4 +31,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':sdk-ui')
+    compile 'com.tongdao.sdk:tongrd:2.2.1'
 }
