@@ -213,6 +213,12 @@
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name="com.tongdao.sdk.permissions.PermissionActivity"
+            android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
