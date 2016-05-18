@@ -1,12 +1,5 @@
 package com.tongdao.demo;
 
-import java.io.FileNotFoundException;
-
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
-import com.tongdao.sdk.ui.TongDaoUiCore;
-import com.tongdao.demo.R;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,6 +14,12 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+import com.tongdao.sdk.ui.TongDaoUiCore;
+
+import java.io.FileNotFoundException;
 
 public class RewardDefineActivity extends ActionBarActivity {
     private static final String IMAGE_TYPE = "image/*";
@@ -38,7 +37,7 @@ public class RewardDefineActivity extends ActionBarActivity {
         this.getSupportActionBar().setIcon(R.drawable.ic_launcher);
         this.getSupportActionBar().setDisplayShowHomeEnabled(true);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
-        this.getSupportActionBar().setTitle(" 设置奖品");
+        this.getSupportActionBar().setTitle(" Setting prizes");
         this.getSupportActionBar().setBackgroundDrawable(this.getResources().getDrawable(R.drawable.bar));
 
         this.setContentView(R.layout.define_reward);

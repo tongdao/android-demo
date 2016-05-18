@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:hint="参数名称"></EditText>
+            android:hint="parameter name"></EditText>
 
         <EditText
             android:id="@+id/value"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="center_vertical"
-            android:hint="参数值"></EditText>
+            android:hint="Parameter Value"></EditText>
     </LinearLayout>
 
     <ImageView

@@ -25,7 +25,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:background="@drawable/button_selector"
-            android:text="上传奖品图片"
+            android:text="Upload picture prize"
             android:textColor="#FFFFFF"></Button>
 
         <EditText
@@ -35,7 +35,7 @@
             android:layout_below="@+id/take_reward_pic"
             android:layout_marginTop="5dp"
             android:gravity="center_vertical"
-            android:hint="奖品名称"></EditText>
+            android:hint="Prizes Name"></EditText>
 
         <EditText
             android:id="@+id/reward_sku_et"
@@ -44,7 +44,7 @@
             android:layout_below="@+id/reward_name_et"
             android:layout_marginTop="5dp"
             android:gravity="center_vertical"
-            android:hint="奖品编码"></EditText>
+            android:hint="Prizes Values"></EditText>
     </RelativeLayout>
 
 </ScrollView>

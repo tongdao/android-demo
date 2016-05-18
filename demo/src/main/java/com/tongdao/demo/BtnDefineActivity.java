@@ -31,7 +31,7 @@ public class BtnDefineActivity extends ActionBarActivity {
     private LinearLayout valueContainer;
     private LayoutInflater inflater;
     private ArrayList<View> valuesViews = new ArrayList<View>();
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
