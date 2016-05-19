@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="创建按钮"></TextView>
+            android:text="Create button"></TextView>
 
         <RadioGroup
             android:id="@+id/type_radio_gp"
@@ -31,14 +31,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="事件" />
+                android:text="event" />
 
             <RadioButton
                 android:id="@+id/identify_radio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="属性" />
+                android:text="Attributes"
+                android:checked="false" />
         </RadioGroup>
 
         <LinearLayout
@@ -54,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:hint="请输入按钮名称"></EditText>
+                android:hint="Please enter a button name"></EditText>
 
             <EditText
                 android:id="@+id/btn_event_name_et"
@@ -62,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
-                android:hint="请输入事件名称"></EditText>
+                android:hint="Please enter the event name"></EditText>
         </LinearLayout>
 
         <LinearLayout
@@ -89,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="添加参数"></TextView>
+                android:text="Add Parameter"></TextView>
         </LinearLayout>
     </LinearLayout>
 

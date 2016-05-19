@@ -21,7 +21,7 @@
             android:paddingLeft="22dp"
             android:paddingRight="20dp"
             android:paddingTop="10dp"
-            android:text="自定义事件或属性"></TextView>
+            android:text="Custom event or attribute"></TextView>
 
         <LinearLayout
             android:id="@+id/btn_container"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="20dp"
-            android:text="自定义奖品"></TextView>
+            android:text="Custom prizes"></TextView>
 
         <LinearLayout
             android:id="@+id/rewards_container"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="22dp"
             android:paddingRight="20dp"
-            android:text="深度链接"></TextView>
+            android:text="Deep linking"></TextView>
 
         <TextView
             android:id="@+id/page1_tv"

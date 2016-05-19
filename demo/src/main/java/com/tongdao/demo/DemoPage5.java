@@ -1,9 +1,5 @@
 package com.tongdao.demo;
 
-import java.util.ArrayList;
-
-import org.json.JSONException;
-
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
@@ -13,7 +9,10 @@ import com.baidu.android.pushservice.PushManager;
 import com.tongdao.sdk.beans.TdRewardBean;
 import com.tongdao.sdk.interfaces.ui.OnRewardUnlockedListener;
 import com.tongdao.sdk.ui.TongDaoUiCore;
-import com.tongdao.demo.R;
+
+import org.json.JSONException;
+
+import java.util.ArrayList;
 
 public class DemoPage5 extends ActionBarActivity {
 
@@ -23,7 +22,7 @@ public class DemoPage5 extends ActionBarActivity {
         this.getSupportActionBar().setIcon(R.drawable.ic_launcher);
         this.getSupportActionBar().setDisplayShowHomeEnabled(true);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
-        this.getSupportActionBar().setTitle(" 深度链接");
+        this.getSupportActionBar().setTitle("Deep linking");
         this.getSupportActionBar().setBackgroundDrawable(
                 this.getResources().getDrawable(R.drawable.bar));
         this.setContentView(R.layout.page);
@@ -37,14 +36,12 @@ public class DemoPage5 extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TongDaoUiCore.onSessionStart(this);
         TongDaoUiCore.displayInAppMessage(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        TongDaoUiCore.onSessionEnd(this);
     }
 
     private void registerListeners() {

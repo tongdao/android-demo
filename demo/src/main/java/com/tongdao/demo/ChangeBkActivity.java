@@ -36,7 +36,7 @@ public class ChangeBkActivity extends ActionBarActivity {
         this.getSupportActionBar().setIcon(R.drawable.ic_launcher);
         this.getSupportActionBar().setDisplayShowHomeEnabled(true);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
-        this.getSupportActionBar().setTitle(" 定义背景");
+        this.getSupportActionBar().setTitle("Home");
         this.getSupportActionBar().setBackgroundDrawable(
                 this.getResources().getDrawable(R.drawable.bar));
         this.setContentView(R.layout.change_bk);
@@ -108,14 +108,12 @@ public class ChangeBkActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TongDaoUiCore.onSessionStart(this);
         TongDaoUiCore.displayInAppMessage(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        TongDaoUiCore.onSessionEnd(this);
     }
 
 }

@@ -22,7 +22,7 @@ public class DemoPage2 extends ActionBarActivity {
         this.getSupportActionBar().setIcon(R.drawable.ic_launcher);
         this.getSupportActionBar().setDisplayShowHomeEnabled(true);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
-        this.getSupportActionBar().setTitle(" 深度链接");
+        this.getSupportActionBar().setTitle("Deep linking");
         this.getSupportActionBar().setBackgroundDrawable(this.getResources().getDrawable(R.drawable.bar));
         this.setContentView(R.layout.page);
         ((TextView) this.findViewById(R.id.link_tv)).setText("demo://page2");
@@ -35,14 +35,12 @@ public class DemoPage2 extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TongDaoUiCore.onSessionStart(this);
         TongDaoUiCore.displayInAppMessage(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        TongDaoUiCore.onSessionEnd(this);
     }
 
     private void registerListeners() {

@@ -17,7 +17,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         this.getSupportActionBar().setIcon(R.drawable.ic_launcher);
         this.getSupportActionBar().setDisplayShowHomeEnabled(true);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
-        this.getSupportActionBar().setTitle(" 登入测试");
+        this.getSupportActionBar().setTitle(" Sign test");
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setBackgroundDrawable(this.getResources().getDrawable(R.drawable.bar));
         setContentView(R.layout.activity_log_in);
@@ -45,6 +45,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             return true;
         }
         if(id == android.R.id.home){
+            finish();
             finish();
         }
         return super.onOptionsItemSelected(item);

@@ -1,11 +1,5 @@
 package com.tongdao.demo;
 
-import android.content.SharedPreferences;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
-import org.json.JSONException;
-
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -16,13 +10,15 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,7 +29,15 @@ import com.baidu.android.pushservice.PushManager;
 import com.tongdao.sdk.beans.TdRewardBean;
 import com.tongdao.sdk.interfaces.ui.OnRewardUnlockedListener;
 import com.tongdao.sdk.ui.TongDaoUiCore;
-import com.tongdao.demo.R;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.MsgConstant;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UmengRegistrar;
+
+import org.json.JSONException;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 
@@ -46,6 +50,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private ArrayList<Bitmap> rewardBitmaps = new ArrayList<Bitmap>();
     private Uri bkUri;
 
+    private PushAgent mPushAgent;
+    public Handler handler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +62,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.getSupportActionBar().setIcon(R.drawable.ic_launcher);
         this.getSupportActionBar().setDisplayShowHomeEnabled(true);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
-        this.getSupportActionBar().setTitle(" 同道演示");
+        this.getSupportActionBar().setTitle("Fellow Demo");
         this.getSupportActionBar().setBackgroundDrawable(this.getResources().getDrawable(R.drawable.bar));
         setContentView(R.layout.activity_main);
+
 
         this.inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mainCn = (ImageView) this.findViewById(R.id.main_cn);
@@ -75,12 +83,25 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         TongDaoUiCore.displayAdvertisement(this);
 
         PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
+
+        // Umeng Push notification registration
+
+        mPushAgent = PushAgent.getInstance(this);
+        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
+        mPushAgent.onAppStart();
+        if (!mPushAgent.isRegistered()) {
+            Log.e("Push", "Not registered...");
+            mPushAgent.enable(mRegisterCallback);
+        }
+        else {
+            String device_token = UmengRegistrar.getRegistrationId(this);
+            Log.e("Push", device_token);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        TongDaoUiCore.onSessionStart(this);
         this.registerListeners();
         try {
             refreshReward();
@@ -94,7 +115,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     @Override
     protected void onPause() {
         super.onPause();
-        TongDaoUiCore.onSessionEnd(this);
     }
 
     private void refreshReward() throws JSONException {
@@ -386,4 +406,20 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
         this.startActivity(linkIntent);
     }
+
+    public IUmengRegisterCallback mRegisterCallback = new IUmengRegisterCallback() {
+
+        @Override
+        public void onRegistered(final String registrationId) {
+            Log.e("Push", registrationId);
+            handler.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    TongDaoUiCore.identifyPushToken(registrationId);
+                }
+            });
+        }
+    };
+
 }

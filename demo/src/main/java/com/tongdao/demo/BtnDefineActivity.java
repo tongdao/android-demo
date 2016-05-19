@@ -31,7 +31,7 @@ public class BtnDefineActivity extends ActionBarActivity {
     private LinearLayout valueContainer;
     private LayoutInflater inflater;
     private ArrayList<View> valuesViews = new ArrayList<View>();
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,13 +142,11 @@ public class BtnDefineActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TongDaoUiCore.onSessionStart(this);
         TongDaoUiCore.displayInAppMessage(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        TongDaoUiCore.onSessionEnd(this);
     }
 }
