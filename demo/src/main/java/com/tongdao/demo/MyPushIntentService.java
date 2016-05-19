@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.umeng.common.message.Log;
 import com.umeng.message.UmengBaseIntentService;
 import com.umeng.message.entity.UMessage;
 

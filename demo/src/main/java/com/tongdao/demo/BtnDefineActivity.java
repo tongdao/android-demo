@@ -142,13 +142,11 @@ public class BtnDefineActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TongDaoUiCore.onSessionStart(this);
         TongDaoUiCore.displayInAppMessage(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        TongDaoUiCore.onSessionEnd(this);
     }
 }

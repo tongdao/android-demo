@@ -93,9 +93,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             Log.e("Push", "Not registered...");
             mPushAgent.enable(mRegisterCallback);
         }
-        String device_token = UmengRegistrar.getRegistrationId(this);
-        Log.e("Push", device_token);
-
+        else {
+            String device_token = UmengRegistrar.getRegistrationId(this);
+            Log.e("Push", device_token);
+        }
     }
 
     @Override
