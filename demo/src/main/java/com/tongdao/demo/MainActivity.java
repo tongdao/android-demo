@@ -95,6 +95,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         }
         else {
             String device_token = UmengRegistrar.getRegistrationId(this);
+            TongDaoUiCore.identifyPushToken(device_token);
             Log.e("Push", device_token);
         }
     }
@@ -102,6 +103,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+        TongDaoUiCore.onSessionStart(this);
         this.registerListeners();
         try {
             refreshReward();
@@ -115,6 +117,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     @Override
     protected void onPause() {
         super.onPause();
+        TongDaoUiCore.onSessionEnd(this);
     }
 
     private void refreshReward() throws JSONException {
