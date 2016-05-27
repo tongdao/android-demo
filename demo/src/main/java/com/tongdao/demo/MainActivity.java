@@ -124,7 +124,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         if (!this.isFinishing()) {
             ArrayList<TransferRewardBean> tempRewards = DataTool.recoverTempRewards(this);
             ArrayList<TransferRewardBean> allOldRewards = DataTool.getAllRewardBeans();
-
+//
             ArrayList<TransferRewardBean> newRewards = new ArrayList<TransferRewardBean>();
             for (TransferRewardBean eachNewTransferRewardBean : tempRewards) {
                 boolean isExist = false;
