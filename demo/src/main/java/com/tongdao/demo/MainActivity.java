@@ -104,7 +104,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         else {
             String device_token = UmengRegistrar.getRegistrationId(this);
             TongDaoUiCore.identifyPushToken(device_token);
-            //Log.e("Push", device_token);
+            Log.e("Push", device_token);
         }
 
         pm = this.getPackageManager();
