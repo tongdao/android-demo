@@ -2,9 +2,12 @@ package com.tongdao.demo;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,7 +16,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,17 +30,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.tongdao.demo.gcm.QuickstartPreferences;
+import com.tongdao.demo.gcm.RegistrationIntentService;
 import com.tongdao.sdk.TongDao;
 import com.tongdao.sdk.beans.TdRewardBean;
 import com.tongdao.sdk.interfaces.ui.OnRewardUnlockedListener;
 import com.tongdao.sdk.ui.TongDaoUiCore;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.MsgConstant;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UmengRegistrar;
+
 
 import org.json.JSONException;
 
@@ -55,11 +62,16 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private ArrayList<Bitmap> rewardBitmaps = new ArrayList<Bitmap>();
     private Uri bkUri;
 
-    private PushAgent mPushAgent;
+
     public Handler handler = new Handler();
 
     PackageManager pm;
     String packageName;
+
+
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static String TAG = MainActivity.class.getSimpleName();
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,20 +104,33 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
         PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
 
-        // Umeng Push notification registration
 
-        mPushAgent = PushAgent.getInstance(this);
-        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
-        mPushAgent.onAppStart();
-        if (!mPushAgent.isRegistered()) {
-            Log.e("Push", "Not registered...");
-            mPushAgent.enable(mRegisterCallback);
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(context);
+                boolean sentToken = sharedPreferences
+                        .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
+                if (sentToken) {
+                    String device_token = sharedPreferences
+                            .getString(QuickstartPreferences.REGISTRATION_TOKEN, "");
+                    Toast.makeText(getApplicationContext(), getString(R.string.gcm_send_message), Toast.LENGTH_LONG).show();
+                    TongDaoUiCore.identifyPushToken(device_token);
+                    Log.e("Push", device_token);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.token_error_message), Toast.LENGTH_LONG).show();
+
+                }
+            }
+        };
+
+        if (checkPlayServices()) {
+            Intent intent = new Intent(this, RegistrationIntentService.class);
+            startService(intent);
         }
-        else {
-            String device_token = UmengRegistrar.getRegistrationId(this);
-            TongDaoUiCore.identifyPushToken(device_token);
-            Log.e("Push", device_token);
-        }
+
 
         pm = this.getPackageManager();
         packageName = this.getPackageName();
@@ -114,6 +139,27 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
         if (phoneStatePermission != 0) {
             this.requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+        }
+
+
+        onNewIntent(getIntent());
+    }
+
+
+    @Override
+    public void onNewIntent(Intent intent) {
+
+        Log.i(TAG, "NotificationMessage - ");
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            if (extras.containsKey("NotificationMessage")) {
+                // extract the extra-data in the Notification
+                String msg = extras.getString("NotificationMessage");
+                Log.i(TAG, "NotificationMessage - " + msg);
+                TongDaoUiCore.trackOpenPushMessage(msg);
+                TongDaoUiCore.openPage(this, msg);
+
+            }
         }
     }
 
@@ -128,6 +174,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             e.printStackTrace();
         }
         TongDaoUiCore.displayInAppMessage(this);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+
     }
 
     @Override
@@ -144,11 +192,11 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                 TongDao.trackEvent();
             }
 
-            if( requestCode == 1 && pm.checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION, packageName) != 0 ) {
-                this.requestPermissions(new String[]{ Manifest.permission.ACCESS_COARSE_LOCATION }, 2);
+            if (requestCode == 1 && pm.checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION, packageName) != 0) {
+                this.requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
             }
 
-            if( requestCode == 2 && pm.checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, packageName) != 0 ) {
+            if (requestCode == 2 && pm.checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, packageName) != 0) {
                 this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 3);
             }
         }
@@ -159,6 +207,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     protected void onPause() {
         super.onPause();
         TongDaoUiCore.onSessionEnd(this);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+
     }
 
     private void refreshReward() throws JSONException {
@@ -221,7 +271,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             startDefineReward();
         } else if (item.getItemId() == R.id.setting_add_item) {
             startDefineBtn();
-        } else if(item.getItemId() == R.id.test_userid_item){
+        } else if (item.getItemId() == R.id.test_userid_item) {
             Intent in = new Intent(this, LogInActivity.class);
             this.startActivity(in);
 
@@ -451,19 +501,22 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.startActivity(linkIntent);
     }
 
-    public IUmengRegisterCallback mRegisterCallback = new IUmengRegisterCallback() {
 
-        @Override
-        public void onRegistered(final String registrationId) {
-            Log.e("Push", registrationId);
-            handler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    TongDaoUiCore.identifyPushToken(registrationId);
-                }
-            });
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.e(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
         }
-    };
+        return true;
+    }
+
 
 }

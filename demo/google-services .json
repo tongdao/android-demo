@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1083085227999",
+    "project_id": "tongrd-1470739060176"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083085227999:android:725763e24c8294dc",
+        "android_client_info": {
+          "package_name": "com.tongdao.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083085227999-aoattdd5qsrnbm8pceksqpqja1ai51nf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tongdao.demo",
+            "certificate_hash": "7E55775CD6BCA3AE609EFC06CADC31EE65AE7AD9"
+          }
+        },
+        {
+          "client_id": "1083085227999-hul678gbf3g8q2l7on4tkq8d61f9a1r6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5VzqMfzLmkNhUZ_Blh8Q3TKaOk8eYVfA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
