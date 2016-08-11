@@ -266,6 +266,14 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name="com.tongdao.demo.gcm.gcmservice.MyGcmPushMessageReceiver">
+            <intent-filter>
+                <action android:name="com.gcm.message.OPEN_URL" />
+                <category android:name="com.example.gcm" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".gcm.gcmservice.MyGcmListenerService"
             android:exported="false">

@@ -14,4 +14,5 @@
     <string name="registering_message">Generating InstanceID token…</string>
     <string name="token_error_message">An error occurred while either fetching the InstanceID token,sending the fetched token to the server or subscribing to the PubSub topic. Please tryrunning the sample again.</string>
     <string name="gcm_defaultSenderId">1083085227999</string>
+
 </resources>
