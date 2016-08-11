@@ -1,6 +1,5 @@
 package com.tongdao.demo.gcm.gcmservice;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -14,8 +13,6 @@ import android.util.Log;
 import com.google.android.gms.gcm.GcmListenerService;
 import com.tongdao.demo.MainActivity;
 import com.tongdao.demo.R;
-import com.tongdao.demo.gcm.GCMDemoActivity;
-import com.tongdao.sdk.ui.TongDaoUiCore;
 
 public class MyGcmListenerService extends GcmListenerService {
 
