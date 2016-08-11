@@ -115,12 +115,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                 if (sentToken) {
                     String device_token = sharedPreferences
                             .getString(QuickstartPreferences.REGISTRATION_TOKEN, "");
-                    Toast.makeText(getApplicationContext(), getString(R.string.gcm_send_message), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), getString(R.string.gcm_send_message), Toast.LENGTH_LONG).show();
                     TongDaoUiCore.identifyPushToken(device_token);
                     Log.e("Push", device_token);
 
                 } else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.token_error_message), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), getString(R.string.token_error_message), Toast.LENGTH_LONG).show();
 
                 }
             }
