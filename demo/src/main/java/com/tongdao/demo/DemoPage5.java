@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
 import com.tongdao.sdk.beans.TdRewardBean;
 import com.tongdao.sdk.interfaces.ui.OnRewardUnlockedListener;
 import com.tongdao.sdk.ui.TongDaoUiCore;
@@ -30,7 +28,9 @@ public class DemoPage5 extends ActionBarActivity {
 
         this.registerListeners();
         TongDaoUiCore.displayAdvertisement(this);
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
+
+        //TODO: Possible code required here for Xiaomi push
+//        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
     }
 
     @Override

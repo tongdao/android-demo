@@ -15,8 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
 import com.tongdao.sdk.ui.TongDaoUiCore;
 
 import java.io.FileNotFoundException;
@@ -56,7 +54,8 @@ public class RewardDefineActivity extends ActionBarActivity {
             }
         });
 
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
+        //TODO: Possible code required here for Xiaomi push
+//        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
     }
 
     @Override

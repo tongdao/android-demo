@@ -5,7 +5,6 @@ import java.util.List;
 import android.content.Context;
 import android.util.Log;
 
-import com.baidu.frontia.api.FrontiaPushMessageReceiver;
 import com.tongdao.sdk.ui.TongDaoUiCore;
 
 /**
@@ -21,7 +20,7 @@ import com.tongdao.sdk.ui.TongDaoUiCore;
  * <p/>
  * 当您遇到以上返回错误时，如果解释不了您的问题，请用同一请求的返回值requestId和errorCode联系我们追查问题。
  */
-public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
+public class MyPushMessageReceiver {
     /**
      * TAG to Log
      */
@@ -40,7 +39,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
      * @param requestId 向服务端发起的请求id。在追查问题时有用；
      * @return none
      */
-    @Override
+//    @Override
     public void onBind(Context context, int errorCode, String appid,
                        String userId, String channelId, String requestId) {
         String responseString = "onBind errorCode=" + errorCode + " appid="
@@ -64,7 +63,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
      * @param message             推送的消息
      * @param customContentString 自定义内容,为空或者json字符串
      */
-    @Override
+//    @Override
     public void onMessage(Context context, String message,
                           String customContentString) {
         String messageString = "透传消息 message=\"" + message
@@ -82,7 +81,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
      * @param description         推送的通知的描述
      * @param customContentString 自定义内容，为空或者json字符串
      */
-    @Override
+//    @Override
     public void onNotificationClicked(Context context, String title,
                                       String description, String customContentString) {
 //		String notifyString = "通知点击 title=\"" + title + "\" description=\""
@@ -103,7 +102,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
      * @param failTags    设置失败的tag
      * @param requestId   分配给对云推送的请求的id
      */
-    @Override
+//    @Override
     public void onSetTags(Context context, int errorCode,
                           List<String> sucessTags, List<String> failTags, String requestId) {
 //		String responseString = "onSetTags errorCode=" + errorCode
@@ -123,7 +122,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
      * @param failTags    删除失败的tag
      * @param requestId   分配给对云推送的请求的id
      */
-    @Override
+//    @Override
     public void onDelTags(Context context, int errorCode,
                           List<String> sucessTags, List<String> failTags, String requestId) {
 //		String responseString = "onDelTags errorCode=" + errorCode
@@ -143,7 +142,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
      * @param tags      当前应用设置的所有tag。
      * @param requestId 分配给对云推送的请求的id
      */
-    @Override
+//    @Override
     public void onListTags(Context context, int errorCode, List<String> tags,
                            String requestId) {
 //		String responseString = "onListTags errorCode=" + errorCode + " tags="
@@ -161,7 +160,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
      * @param errorCode 错误码。0表示从云推送解绑定成功；非0表示失败。
      * @param requestId 分配给对云推送的请求的id
      */
-    @Override
+//    @Override
     public void onUnbind(Context context, int errorCode, String requestId) {
         String responseString = "onUnbind errorCode=" + errorCode
                 + " requestId = " + requestId;
@@ -175,7 +174,7 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
         // updateContent(context, responseString);
     }
 
-    @Override
+//    @Override
     public void onNotificationArrived(Context context, String title,
                                       String description, String customContentString) {
         String notifyString = "onNotificationArrived  title=\"" + title

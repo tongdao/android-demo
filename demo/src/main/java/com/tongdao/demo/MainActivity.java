@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.appcompat.*;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,12 +27,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
 import com.tongdao.sdk.TongDao;
 import com.tongdao.sdk.beans.TdRewardBean;
 import com.tongdao.sdk.interfaces.ui.OnRewardUnlockedListener;
 import com.tongdao.sdk.ui.TongDaoUiCore;
+import com.xiaomi.mipush.sdk.MiPushClient;
 
 import org.json.JSONException;
 
@@ -85,7 +85,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.registerListeners();
         TongDaoUiCore.displayAdvertisement(this);
 
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
+        //TODO: Possible code required here for Xiaomi push
+//        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
 
         // TODO: Possible push notification registration here
 
@@ -115,6 +116,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+//        MiPushClient.resumePush(MainActivity.this, null);
         TongDaoUiCore.onSessionStart(this);
         this.registerListeners();
         try {
@@ -143,7 +145,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
                 this.requestPermissions(new String[]{ Manifest.permission.ACCESS_COARSE_LOCATION }, 2);
             }
 
-            if( requestCode == 2 && pm.checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, packageName) != 0 ) {
+            if(requestCode == 2 && pm.checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, packageName) != 0 ) {
                 this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 3);
             }
         }
@@ -153,6 +155,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     @Override
     protected void onPause() {
         super.onPause();
+//        MiPushClient.pausePush(MainActivity.this,null);
         TongDaoUiCore.onSessionEnd(this);
     }
 

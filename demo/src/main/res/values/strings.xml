@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TongRd Demo</string>
+    <string name="app_name">TongRd Demo Xiaomi Push</string>
     <string name="user1">USER1 LOGIN</string>
     <string name="user2">USER2 LOGIN</string>
     <string name="logout">LOGOUT</string>

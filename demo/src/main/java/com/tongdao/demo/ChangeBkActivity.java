@@ -2,8 +2,6 @@ package com.tongdao.demo;
 
 import java.io.FileNotFoundException;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
 import com.tongdao.sdk.ui.TongDaoUiCore;
 import com.tongdao.demo.R;
 
@@ -52,7 +50,8 @@ public class ChangeBkActivity extends ActionBarActivity {
                     }
                 });
 
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
+        //TODO: Possible code required here for Xiaomi push
+//        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
     }
 
     @Override
