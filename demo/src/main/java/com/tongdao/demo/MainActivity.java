@@ -32,10 +32,6 @@ import com.tongdao.sdk.TongDao;
 import com.tongdao.sdk.beans.TdRewardBean;
 import com.tongdao.sdk.interfaces.ui.OnRewardUnlockedListener;
 import com.tongdao.sdk.ui.TongDaoUiCore;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.MsgConstant;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UmengRegistrar;
 
 import org.json.JSONException;
 
@@ -55,7 +51,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private ArrayList<Bitmap> rewardBitmaps = new ArrayList<Bitmap>();
     private Uri bkUri;
 
-    private PushAgent mPushAgent;
     public Handler handler = new Handler();
 
     PackageManager pm;
@@ -92,20 +87,20 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
         PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
 
-        // Umeng Push notification registration
+        // TODO: Possible push notification registration here
 
-        mPushAgent = PushAgent.getInstance(this);
-        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
-        mPushAgent.onAppStart();
-        if (!mPushAgent.isRegistered()) {
-            Log.e("Push", "Not registered...");
-            mPushAgent.enable(mRegisterCallback);
-        }
-        else {
-            String device_token = UmengRegistrar.getRegistrationId(this);
-            TongDaoUiCore.identifyPushToken(device_token);
-            Log.e("Push", device_token);
-        }
+//        mPushAgent = PushAgent.getInstance(this);
+//        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
+//        mPushAgent.onAppStart();
+//        if (!mPushAgent.isRegistered()) {
+//            Log.e("Push", "Not registered...");
+//            mPushAgent.enable(mRegisterCallback);
+//        }
+//        else {
+//            String device_token = UmengRegistrar.getRegistrationId(this);
+//            TongDaoUiCore.identifyPushToken(device_token);
+//            Log.e("Push", device_token);
+//        }
 
         pm = this.getPackageManager();
         packageName = this.getPackageName();
@@ -451,19 +446,21 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.startActivity(linkIntent);
     }
 
-    public IUmengRegisterCallback mRegisterCallback = new IUmengRegisterCallback() {
+    //TODO: Possible push registration callback here
 
-        @Override
-        public void onRegistered(final String registrationId) {
-            Log.e("Push", registrationId);
-            handler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    TongDaoUiCore.identifyPushToken(registrationId);
-                }
-            });
-        }
-    };
+//    public IUmengRegisterCallback mRegisterCallback = new IUmengRegisterCallback() {
+//
+//        @Override
+//        public void onRegistered(final String registrationId) {
+//            Log.e("Push", registrationId);
+//            handler.post(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    TongDaoUiCore.identifyPushToken(registrationId);
+//                }
+//            });
+//        }
+//    };
 
 }

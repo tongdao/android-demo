@@ -100,7 +100,6 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
      *
      * @param context     上下文
      * @param errorCode   错误码。0表示某些tag已经设置成功；非0表示所有tag的设置均失败。
-     * @param successTags 设置成功的tag
      * @param failTags    设置失败的tag
      * @param requestId   分配给对云推送的请求的id
      */
@@ -121,7 +120,6 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
      *
      * @param context     上下文
      * @param errorCode   错误码。0表示某些tag已经删除成功；非0表示所有tag均删除失败。
-     * @param successTags 成功删除的tag
      * @param failTags    删除失败的tag
      * @param requestId   分配给对云推送的请求的id
      */
