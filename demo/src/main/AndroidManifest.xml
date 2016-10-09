@@ -47,7 +47,7 @@
 
                 <data
                     android:host="home"
-                    android:scheme="xiaomidemo" />
+                    android:scheme="demo" />
             </intent-filter>
         </activity>
         <activity
@@ -199,64 +199,8 @@
                 <action android:name="com.xiaomi.push.PING_TIMER" />
             </intent-filter>
         </receiver>
+        <!--Push receiver end-->
 
-
-        <!--<receiver android:name=".MyPushMessageReceiver" >-->
-            <!--<intent-filter>-->
-
-                <!--&lt;!&ndash; 接收push消息 &ndash;&gt;-->
-                <!--<action android:name="com.baidu.android.pushservice.action.MESSAGE" />-->
-                <!--&lt;!&ndash; 接收bind,unbind,fetch,delete等反馈消息 &ndash;&gt;-->
-                <!--<action android:name="com.baidu.android.pushservice.action.RECEIVE" />-->
-                <!--<action android:name="com.baidu.android.pushservice.action.notification.CLICK" />-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
-
-        <!-- push必须的receviver和service声明 -->
-        <!--<receiver-->
-            <!--android:name="com.baidu.android.pushservice.PushServiceReceiver"-->
-            <!--android:process=":bdservice_v1" >-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
-                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
-                <!--<action android:name="com.baidu.android.pushservice.action.notification.SHOW" />-->
-                <!--<action android:name="com.baidu.android.pushservice.action.advertise.notification.SHOW" />-->
-                <!--<action android:name="com.baidu.android.pushservice.action.media.CLICK" />-->
-                <!--&lt;!&ndash; 以下四项为可选的action声明，可大大提高service存活率和消息到达速度 &ndash;&gt;-->
-                <!--<action android:name="android.intent.action.MEDIA_MOUNTED" />-->
-                <!--<action android:name="android.intent.action.USER_PRESENT" />-->
-                <!--<action android:name="android.intent.action.ACTION_POWER_CONNECTED" />-->
-                <!--<action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
-        <!--<receiver-->
-            <!--android:name="com.baidu.android.pushservice.RegistrationReceiver"-->
-            <!--android:process=":bdservice_v1" >-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.baidu.android.pushservice.action.adnotification.ADCLICK" />-->
-                <!--<action android:name="com.baidu.android.pushservice.action.adnotification.ADDELETE" />-->
-                <!--<action android:name="com.baidu.android.pushservice.action.METHOD" />-->
-                <!--<action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />-->
-            <!--</intent-filter>-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.PACKAGE_REMOVED" />-->
-
-                <!--<data android:scheme="package" />-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
-
-        <!--<service-->
-            <!--android:name="com.baidu.android.pushservice.PushService"-->
-            <!--android:exported="true"-->
-            <!--android:process=":bdservice_v1" >-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
-        <!--<service-->
-            <!--android:name="com.baidu.android.pushservice.CommandService"-->
-            <!--android:exported="true" />-->
-        <!-- push结束 -->
         <activity
             android:name=".LogInActivity"
             android:label="@string/title_activity_log_in"
@@ -269,9 +213,6 @@
             android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize"
             android:screenOrientation="portrait" />
 
-        <!--<service-->
-            <!--android:name="com.tongdao.demo.MyPushIntentService"-->
-            <!--android:process=":push" />-->
 
         <meta-data
             android:name="UMENG_APPKEY"
