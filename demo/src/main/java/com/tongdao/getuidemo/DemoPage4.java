@@ -1,11 +1,10 @@
-package com.tongdao.demo;
+package com.tongdao.getuidemo;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
+import com.igexin.sdk.PushManager;
 import com.tongdao.sdk.beans.TdRewardBean;
 import com.tongdao.sdk.interfaces.ui.OnRewardUnlockedListener;
 import com.tongdao.sdk.ui.TongDaoUiCore;
@@ -14,7 +13,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class DemoPage4 extends ActionBarActivity {
+public class DemoPage4 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class DemoPage4 extends ActionBarActivity {
 
         this.registerListeners();
         TongDaoUiCore.displayAdvertisement(this);
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
+        PushManager.getInstance().initialize(this.getApplicationContext());
     }
 
     @Override

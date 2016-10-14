@@ -1,11 +1,9 @@
-package com.tongdao.demo;
+package com.tongdao.getuidemo;
 
 import java.io.FileNotFoundException;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
+import com.igexin.sdk.PushManager;
 import com.tongdao.sdk.ui.TongDaoUiCore;
-import com.tongdao.demo.R;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -52,7 +50,7 @@ public class ChangeBkActivity extends ActionBarActivity {
                     }
                 });
 
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
+        PushManager.getInstance().initialize(this.getApplicationContext());
     }
 
     @Override

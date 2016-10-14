@@ -1,21 +1,20 @@
-package com.tongdao.demo;
-
-import java.util.ArrayList;
-
-import org.json.JSONException;
+package com.tongdao.getuidemo;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
+import com.igexin.sdk.PushManager;
 import com.tongdao.sdk.beans.TdRewardBean;
 import com.tongdao.sdk.interfaces.ui.OnRewardUnlockedListener;
 import com.tongdao.sdk.ui.TongDaoUiCore;
-import com.tongdao.demo.R;
 
-public class DemoPage2 extends ActionBarActivity {
+import org.json.JSONException;
+
+import java.util.ArrayList;
+
+public class DemoPage5 extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,13 +22,14 @@ public class DemoPage2 extends ActionBarActivity {
         this.getSupportActionBar().setDisplayShowHomeEnabled(true);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
         this.getSupportActionBar().setTitle("Deep linking");
-        this.getSupportActionBar().setBackgroundDrawable(this.getResources().getDrawable(R.drawable.bar));
+        this.getSupportActionBar().setBackgroundDrawable(
+                this.getResources().getDrawable(R.drawable.bar));
         this.setContentView(R.layout.page);
-        ((TextView) this.findViewById(R.id.link_tv)).setText("demo://page2");
+        ((TextView) this.findViewById(R.id.link_tv)).setText("demo://page5");
 
         this.registerListeners();
         TongDaoUiCore.displayAdvertisement(this);
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
+        PushManager.getInstance().initialize(this.getApplicationContext());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class DemoPage2 extends ActionBarActivity {
                     public void onSuccess(ArrayList<TdRewardBean> rewards) {
                         if (rewards != null && rewards.size() > 0) {
                             try {
-                                DataTool.saveTempRewards(DemoPage2.this, rewards);
+                                DataTool.saveTempRewards(DemoPage5.this, rewards);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -60,4 +60,5 @@ public class DemoPage2 extends ActionBarActivity {
                     }
                 });
     }
+
 }

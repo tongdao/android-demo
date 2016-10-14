@@ -1,20 +1,21 @@
-package com.tongdao.demo;
+package com.tongdao.getuidemo;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,25 +27,25 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
 import com.tongdao.sdk.TongDao;
 import com.tongdao.sdk.beans.TdRewardBean;
 import com.tongdao.sdk.interfaces.ui.OnRewardUnlockedListener;
 import com.tongdao.sdk.ui.TongDaoUiCore;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.MsgConstant;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UmengRegistrar;
 
 import org.json.JSONException;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class MainActivity extends ActionBarActivity implements OnClickListener {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
+
+    //getui push SDK
+    /**
+     * 第三方应用Master Secret，修改为正确的值
+     */
+    private static final String MASTERSECRET = "z7p67FBtYN8fa5C7pQBVf4";
+
+    private static final int REQUEST_PERMISSION = 0;
 
     private LinearLayout btnContainer;
     private LinearLayout rewardsContainer;
@@ -55,11 +56,16 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private ArrayList<Bitmap> rewardBitmaps = new ArrayList<Bitmap>();
     private Uri bkUri;
 
-    private PushAgent mPushAgent;
     public Handler handler = new Handler();
 
     PackageManager pm;
     String packageName;
+
+    // SDK参数，会自动从Manifest文件中读取，第三方无需修改下列变量，请修改AndroidManifest.xml文件中相应的meta-data信息。
+    // 修改方式参见个推SDK文档
+    private String appkey = "";
+    private String appsecret = "";
+    private String appid = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,22 +96,36 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.registerListeners();
         TongDaoUiCore.displayAdvertisement(this);
 
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, DataTool.BAIDU_API_KEY);
 
-        // Umeng Push notification registration
+        //getui push notification setup
+        String packageName = getApplicationContext().getPackageName();
+        try {
+            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            if (appInfo.metaData != null) {
+                appid = appInfo.metaData.getString("PUSH_APPID");
+                appsecret = appInfo.metaData.getString("PUSH_APPSECRET");
+                appkey = appInfo.metaData.getString("PUSH_APPKEY");
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        PackageManager pkgManager = getPackageManager();
+        // 读写 sd card 权限非常重要, android6.0默认禁止的, 建议初始化之前就弹窗让用户赋予该权限
+        boolean sdCardWritePermission =
+                pkgManager.checkPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, getPackageName()) == PackageManager.PERMISSION_GRANTED;
 
-        mPushAgent = PushAgent.getInstance(this);
-        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
-        mPushAgent.onAppStart();
-        if (!mPushAgent.isRegistered()) {
-            Log.e("Push", "Not registered...");
-            mPushAgent.enable(mRegisterCallback);
+
+        // read phone state用于获取 imei 设备信息
+        boolean phoneSatePermission =
+                pkgManager.checkPermission(Manifest.permission.READ_PHONE_STATE, getPackageName()) == PackageManager.PERMISSION_GRANTED;
+
+        if (Build.VERSION.SDK_INT >= 23 && !sdCardWritePermission || !phoneSatePermission) {
+            requestPermission();
+        } else {
+            // SDK初始化，第三方程序启动时，都要进行SDK初始化工作
+            com.igexin.sdk.PushManager.getInstance().initialize(this.getApplicationContext());
         }
-        else {
-            String device_token = UmengRegistrar.getRegistrationId(this);
-            TongDaoUiCore.identifyPushToken(device_token);
-            Log.e("Push", device_token);
-        }
+
 
         pm = this.getPackageManager();
         packageName = this.getPackageName();
@@ -116,6 +136,16 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             this.requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
         }
     }
+
+    /**
+     * Part of the Getui push SDK
+     */
+    private void requestPermission() {
+        this.requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE},
+                REQUEST_PERMISSION);
+
+    }
+
 
     @Override
     protected void onResume() {
@@ -150,6 +180,17 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
             if( requestCode == 2 && pm.checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, packageName) != 0 ) {
                 this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 3);
+            }
+        }
+
+        if (requestCode == REQUEST_PERMISSION) {
+            if ((grantResults.length == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
+                com.igexin.sdk.PushManager.getInstance().initialize(this.getApplicationContext());
+            } else {
+                Log.e("GetuiSdkDemo",
+                        "we highly recommend that you need to grant the special permissions before initializing the SDK, otherwise some "
+                                + "functions will not work");
+                com.igexin.sdk.PushManager.getInstance().initialize(this.getApplicationContext());
             }
         }
     }
@@ -451,19 +492,5 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         this.startActivity(linkIntent);
     }
 
-    public IUmengRegisterCallback mRegisterCallback = new IUmengRegisterCallback() {
-
-        @Override
-        public void onRegistered(final String registrationId) {
-            Log.e("Push", registrationId);
-            handler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    TongDaoUiCore.identifyPushToken(registrationId);
-                }
-            });
-        }
-    };
 
 }

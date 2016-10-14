@@ -1,4 +1,4 @@
-package com.tongdao.demo;
+package com.tongdao.getuidemo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
