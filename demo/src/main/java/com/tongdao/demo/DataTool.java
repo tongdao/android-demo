@@ -16,7 +16,7 @@ import android.content.Context;
 import android.net.Uri;
 
 public class DataTool {
-public static final String APP_KEY = "89f8b09fe25e58683556df052de1e651";
+public static final String APP_KEY = "be58eb8239412d99c755668d683c3c97";
     public static final String APP_ID = "2882303761517514552";
     public static final String PUSH_APP_KEY = "5251751474552";
     private static ArrayList<TransferBean> transferBeanList;
